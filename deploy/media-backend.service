@@ -1,0 +1,24 @@
+[Unit]
+Description=Media System Backend
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/media-system/backend
+ExecStart=/usr/bin/npm start
+Restart=always
+RestartSec=10
+Environment=NODE_ENV=production
+Environment=PORT=3001
+Environment=HOST=127.0.0.1
+Environment=DB_HOST=localhost
+Environment=DB_PORT=5432
+Environment=DB_USER=mediauser
+Environment=DB_PASSWORD=mediapass123
+Environment=DB_NAME=mediadb
+Environment=JWT_SECRET=your-super-secret-jwt-key-change-in-production
+Environment=UPLOAD_DIR=/opt/media-files
+
+[Install]
+WantedBy=multi-user.target
